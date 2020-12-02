@@ -38,7 +38,7 @@ Being able to early detected of SBA loan default could reduce the risk of loss f
     
 #### Machine Learning
 In this Final Project, I just use algorithms of machine learning that based on tree (Decision Tree, Random Forest and XGBoost). Here are the results of the algorithms:\
-![Eval Matrix](Eva_mat_all_model.png)
+![Evaluation Matrix](Eva_mat_all_model.PNG)
 
 From the results showed that Random Forest after Tuning has recall positif around 0.93. So for the deploying model, I used this model.
 
