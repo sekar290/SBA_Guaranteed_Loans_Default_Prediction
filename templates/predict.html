@@ -1,0 +1,93 @@
+{% extends 'index.html' %} {% block content %}
+<center>
+    <p><b>Table</b></p>
+
+    <div class='table-bordered' style='overflow: auto; height: 200px; width: 35%; margin:0 auto'>
+        <table>
+           
+        {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+        {% endfor %}
+        </table>
+    </div>
+
+    <form method="POST" action="http://localhost:5000/pred_result">
+        <br>
+        <p><b>SBA Prediction</b></p>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 165px">Is Franchise:</span>
+            <select name="isFranchise" style="width: 250px" class="form-control" required="required">
+            <option value="Franchise">Franchise</option>
+            <option value="No Franchise">No Franchise</option>
+            <option disabled selected hidden>Is Small Business Franchise?</option>
+        </select>
+        </div>
+
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">Sector:</span>
+            <select name="sector" style="width: 250px" class="form-control" required="required">
+            <option value="Ag_fores_ﬁshi_hunting">Agriculture, forestry, fishing and hunting</option>
+            <option value="Mining_quar_oil_gas_ext">Mining, quarrying, and oil and gas extraction</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Construction">Construction</option>
+            <option value="Wholesale_trade">Wholesale trade</option>
+            <option value="Retail_trade">Retail trade</option>
+            <option value="Trans_&_Ware">Transportation and warehousing</option>
+            <option value="Information">Information</option>
+            <option value="Finance_insurance">Finance and insurance</option>
+            <option value="RE_rental_leasing">Real estate and rental and leasing</option>
+            <option value="Prof_scien_and_tech_serv">Professional, scientific, and technical services</option>
+            <option value="Management_and_enterprises">Management of companies and enterprises</option>
+            <option value="Admini_sup_and_waste_mgm_rem">Administrative and support and waste management and remediation services</option>
+            <option value="Educational_services">Educational services</option>
+            <option value="Health_care_social_ass">Health care and social assistance</option>
+            <option value="Arts_enter_recreation">Arts, entertainment, and recreation</option>
+            <option value="Accommodation_food_serv">Accommodation and food services</option>
+            <option value="Other_no_pub">Other services (except public administration)</option>
+            <option value="Public_admin">Public administration</option>
+            <option value="Manufacturing">Manufacturing</option>
+            <option disabled selected hidden>Sector of Small Business base on NAICS?</option>
+        </select>
+        </div>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">State:</span>
+            <select name="sameState" style="width: 250px" class="form-control" required="required">
+            <option value="1">Same State</option>
+            <option value="0">Different State</option>
+            <option disabled selected hidden>Is Bank and Small Business in Same State?</option>
+        </select>
+        </div>
+        <div class="input-group mb-3" style="width: 500px">
+            <span class="input-group-text" style="width: 125px">UrbanRural:</span>
+            <select name="UrbanRural" style="width: 250px" class="form-control" required="required">
+            <option value="1">Urban</option>
+            <option value="2">Rural</option>
+            <option disabled selected hidden>Location of Small Business?</option>
+        </select>
+        </div>
+        <div class="row" style="width: 500px">
+            <div class="col-md-6" style="width: 250px">
+                <label for="Term">Term (Month):</label>
+                <input type="number" name="Term" step="1.0" min="1" max="1000" style="width: 250px" id="Term" class="form-control" required=True/>
+            </div>
+        </div>
+        <div class="row" style="width: 500px">
+            <div class="col-md-6" style="width: 250px">
+                <label for="GrAppv">Amount Approved by Bank (USD) :</label>
+                <input type="number" name="GrAppv" step="1.0" min="1" max="5000000" style="width: 250px" id="GrAppv" class="form-control" required=True/>
+            </div>
+        </div>
+        <div class="row" style="width: 500px">
+            <div class="col-md-6" style="width: 250px">
+                <label for="NoEmp">Number of Employees :</label>
+                <input type="number" name="NoEmp" step="0.01" min="0" max="1500" style="width: 250px" id="Portion" class="form-control" required=True/>
+            </div>
+        </div>
+        <br>
+        <button type="submit" style="background-color: rgb(4,122,133); color: whitesmoke" class="btn btn-info">Predict SBA Loan</button>
+    </form>
+    <br>
+</center>
+
+{% endblock %}
